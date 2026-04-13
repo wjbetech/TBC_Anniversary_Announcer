@@ -1,149 +1,41 @@
-Announcer_Options = {}
+local A = Announcer
 
 function Announcer_OnLoad(self)
-	SLASH_ANNOUNCER1 = "/announcer";
-	SlashCmdList["ANNOUNCER"] = Announcer_SlashCommand;
-	self:RegisterEvent("COMBAT_LOG_EVENT_UNFILTERED");
-	Announcer_Options.announce = Announcer_Set_Prefs(Announcer_Options.announce, true)
-	Announcer_Options.debug = Announcer_Set_Prefs(Announcer_Options.debug, false)
-	Announcer_Options.taunt = Announcer_Set_Prefs(Announcer_Options.taunt, false)
+	SLASH_ANNOUNCER1 = "/announcer"
+	SlashCmdList["ANNOUNCER"] = Announcer_SlashCommand
+	self:RegisterEvent("COMBAT_LOG_EVENT_UNFILTERED")
+	self:RegisterEvent("PLAYER_ENTERING_WORLD")
+	self:RegisterEvent("PLAYER_EQUIPMENT_CHANGED")
+	A.EnsureOptions()
+	A.RefreshTrackedTrinkets()
+	A.CreateOptionsPanel()
 
-	Announcer_Message("Announcements: "..Announcer_Color_Text(Announcer_Options.announce));
-	Announcer_Message("taunt: "..Announcer_Color_Text(Announcer_Options.taunt));
+	A.Message(A.optionLabels.announce..": "..A.ColorText(Announcer_Options.announce))
+	A.Message(A.optionLabels.taunt..": "..A.ColorText(Announcer_Options.taunt))
 end
 
-function Announcer_Set_Prefs(option, bool_default)
-	if option == nil then
-		return bool_default
-	else
-		return option
-	end
-end
-
-function Announcer_Color_Text(value)
-	if (value) then
-		return "|cff00FF00["..tostring(value).."]|r"
-	end
-	return "|cffFF0000["..tostring(value).."]|r"
+function Announcer_OnEvent(self, event, ...)
+	A.OnEvent(self, event, ...)
 end
 
 function Announcer_SlashCommand(msg)
-	msg = string.lower(msg);
-	if (msg == nil or msg == "") then
-		Announcer_Message("Announcer: /announcer announce : "..Announcer_Color_Text(Announcer_Options.announce))
-		Announcer_Message("Announcer: /announcer taunt : "..Announcer_Color_Text(Announcer_Options.taunt))
-	
+	msg = string.lower(msg or "")
+	if msg == "" then
+		A.OpenOptionsPanel()
+		A.Message(A.L.openedOptions)
+		return
+	end
+
+	if msg == "announce" then
+		A.ToggleOption("announce")
+	elseif msg == "debug" then
+		A.ToggleOption("debug")
+	elseif msg == "taunt" then
+		A.ToggleOption("taunt")
+	elseif msg == "options" or msg == "config" then
+		A.OpenOptionsPanel()
+		A.Message(A.L.openedOptions)
 	else
-		if (msg == "announce") then
-			Announcer_Options.announce = not Announcer_Options.announce;
-			Announcer_Message("Announcements: "..Announcer_Color_Text(Announcer_Options.announce));
-		elseif (msg == "debug") then
-			Announcer_Options.debugging = not Announcer_Options.debugging;
-			Announcer_Message("Debug: "..tostring(Announcer_Options.debugging));
-		elseif (msg == "taunt") then
-			Announcer_Options.taunt = not Announcer_Options.taunt;
-			Announcer_Message("taunt: "..Announcer_Color_Text(Announcer_Options.taunt));
-		end
-	end
-end
-
-function Announcer_Message(msg)
-	if msg == nil then
-		msg = "nil";
-	end
-	DEFAULT_CHAT_FRAME:AddMessage("|cffACC3EB-[Announcer]- |r"..msg);
-end
-
-
-local missTypes = {
-	ABSORB = true,
-	BLOCK = true,
-	DEFLECT = true,
-	DODGE = true,
-	EVADE = true,
-	IMMUNE = true,
-	MISS = true,
-	PARRY = true,
-	REFLECT = true,
-	RESIST = true
-}
-
-local hitAbilities = {
-	["Pummel"] = true,
-	["Shield Bash"] = true,
-	["Intercept Stun"] = true,
-	["Concussion Blow"] = true,
-	["Disarm"] = true,
-	["Bash"] = true,
-}
-
-local tauntAbilities = {
-	["Mocking Blow"] = 6,
-	["Taunt"] = 3,
-	--["Challenging Shout"] = 6,
-	["Growl"] = 3,
-	--["Challenging Roar"] = 6,
-}
-
-local cooldownAbilities =  {
-	["Last Stand"] = 20,
-	["Shield Wall"] = 10,
-	["Frenzied Regeneration"] = 10,
-}
-
-	
-
-function Announcer_OnEvent(self, event, ...)
-
-	-- Grab Variables
-	local PlayerName           = UnitName("player");
-	local PlayerGUID           = UnitGUID("player");
-	local AnnouncerEventMessage = "";
-	
-	if (event == "COMBAT_LOG_EVENT_UNFILTERED" ) then
-		local timestamp, event, hideCaster, sourceGUID, sourceName, sourceFlags, sourceRaidFlags, destGUID, destName, destFlags, destRaidFlags, extraArg1, extraArg2, extraArg3, extraArg4, extraArg5, extraArg6, extraArg7, extraArg8, extraArg9, extraArg10 = CombatLogGetCurrentEventInfo()
-	
-		local spellName = extraArg2
-
-		
-		if (sourceGUID == PlayerGUID) then
-			if ( event == "SPELL_MISSED" ) then
-				local missType = extraArg4
-				if ( hitAbilities[spellName] or tauntAbilities[spellName] ) then
-					AnnouncerEventMessage = tostring(spellName).." > "..tostring(missType).." > "..tostring(destName);
-				end
-			elseif ( Announcer_Options.taunt and tauntAbilities[spellName] ) then
-				if ( event == "SPELL_AURA_APPLIED" ) then 
-					AnnouncerEventMessage = tostring(spellName).." > "..tostring(destName).." ends in "..tostring(tauntAbilities[spellName].." seconds!");
-				elseif ( event == "SPELL_AURA_REMOVED" ) then
-					AnnouncerEventMessage = tostring(spellName).." ended!"
-				end
-			end
-		end
-		
-
-		if (destGUID == PlayerGUID) then
-			--	threat cds	
-			if (cooldownAbilities[spellName]) then
-				if ( event == "SPELL_AURA_APPLIED" or event == "SPELL_AURA_REFRESH") then
-					AnnouncerEventMessage = "Using "..tostring(spellName).." ending in "..tostring(cooldownAbilities[spellName].." seconds!")
-				elseif (event == "SPELL_AURA_REMOVED") then
-					AnnouncerEventMessage = tostring(spellName).." ended!"
-				end
-			end
-
-		end
-
-	end
-	
-	-- Broadcasts the AnnouncerEventMessage in the highest channel
-	if (AnnouncerEventMessage ~= "" and Announcer_Options.announce) then
-		if (IsInRaid() and IsInInstance()) then
-			SendChatMessage(AnnouncerEventMessage, "SAY");
-		elseif (IsInRaid()) then
-			SendChatMessage(AnnouncerEventMessage, "RAID");
-		elseif (IsInGroup()) then
-			SendChatMessage(AnnouncerEventMessage, "PARTY");
-		end
+		A.Message(A.L.usage)
 	end
 end

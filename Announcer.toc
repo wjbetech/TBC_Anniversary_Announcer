@@ -1,4 +1,22 @@
 ## Interface: 20501
 ## SavedVariablesPerCharacter: Announcer_Options
+core\Namespace.lua
+core\Localization.lua
+core\Registry.lua
+classes\Warrior.lua
+classes\Paladin.lua
+classes\Hunter.lua
+classes\Rogue.lua
+classes\Priest.lua
+classes\Shaman.lua
+classes\Mage.lua
+classes\Warlock.lua
+classes\Druid.lua
+core\DB.lua
+core\Formatter.lua
+core\Messaging.lua
+core\Trinkets.lua
+core\Options.lua
+core\Events.lua
 Announcer.lua
 Announcer.xml
