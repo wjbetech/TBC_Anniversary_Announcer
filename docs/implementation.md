@@ -27,3 +27,31 @@ localized immune/resist/miss wording and any new menu labels.
 - offensives like Power Infusion are target-based; others may be self-only
 - whisper target for externals needs guard so you do not whisper yourself or nil
 - target trinket spam warning belongs in UI text, not event throttle logic
+
+## Spell Definition Model
+
+### Categories
+
+- defensive
+- offensive
+- taunt
+- crowd_control
+- trinket
+- important_tank_outcome
+
+### Behaviors
+
+- self_aura
+- target_aura
+- cast_success
+
+### Flags
+
+- announceOnMiss
+- announceOnResist
+- announceOnImmune
+- announceOnBreak
+- announceOnExpire
+- announceTarget
+- whisperTarget
+- showRaidIcon

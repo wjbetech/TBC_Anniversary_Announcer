@@ -3,7 +3,7 @@ local A = Announcer
 A.registry = {
 	self_aura = {},
 	target_aura = {},
-	cooldown = {},
+	cast_success = {},
 	classSpellDefinitions = {},
 	allSpellDefinitions = {}
 }
@@ -13,7 +13,16 @@ for _, classToken in ipairs(A.classOrder) do
 end
 
 function A.RegisterSpellDefinition(spellDefinition)
-	local registryGroup = A.registry[spellDefinition.group]
+  
+  if not spellDefinition.category or not spellDefinition.behavior then
+    return
+  end
+  
+  if not spellDefinition.key or not spellDefinition.class or not spellDefinition.spellID then
+    return
+  end
+  
+	local registryGroup = A.registry[spellDefinition.behavior]
 	if registryGroup == nil then
 		return
 	end
@@ -30,7 +39,7 @@ function A.RegisterSpellDefinition(spellDefinition)
     behavior = spellDefinition.behavior,
 		spellID = spellDefinition.spellID,
 		duration = spellDefinition.duration,
-    announceOnMiss = spellDefinition.announceOnMiss,
+    flags = spellDefinition.flags or {},
 		spellName = spellName
 	}
 
@@ -40,22 +49,22 @@ function A.RegisterSpellDefinition(spellDefinition)
 	table.insert(A.registry.allSpellDefinitions, storedDefinition)
 end
 
-function A.GetTrackedSpellDefinitions()
-	return A.registry.allSpellDefinitions
-end
-
-function A.GetClassSpellDefinitions(classToken)
-	return A.registry.classSpellDefinitions[classToken] or {}
+function A.GetBehaviorDefinition(behavior, spellName)
+  if A.registry[behavior] == nil then
+    return nil
+  end
+  
+  return A.registry[behavior][spellName]
 end
 
 function A.GetHitDefinition(spellName)
-	return A.registry.hit[spellName]
+	return A.GetBehaviorDefinition("cast_success", spellName)
 end
 
 function A.GetTrackedAuraDefinition(spellName)
-	return A.registry.tracked_aura[spellName]
+	return A.GetBehaviorDefinition("target_aura", spellName)
 end
 
 function A.GetCooldownDefinition(spellName)
-	return A.registry.cooldown[spellName]
+	return A.GetBehaviorDefinition("self_aura", spellName)
 end

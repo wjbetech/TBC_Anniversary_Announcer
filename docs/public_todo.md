@@ -6,7 +6,7 @@ An internal todo I use myself exists but is not public.
 
 ## Current Focus
 
-1. Streamline tracked abilities int oclear categories:
+1. Streamline tracked abilities into clear categories:
 
 - Defensives
 - Offensives
