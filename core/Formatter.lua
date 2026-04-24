@@ -1,5 +1,23 @@
 local A = Announcer
 
+function A.RenderTemplate(template, tokens)
+  local renderedText = template
+
+  for token, value in pairs(tokens) do
+    renderedText = string.gsub(renderedText, token, tostring(value or """))
+  end
+
+  return renderedText
+end
+
+function A.GetDurationText(duration)
+  if duration == nil or duration <= 0 then
+    return ""
+  end
+
+  return tostring(duration).."s"
+end
+
 function A.GetSpellText(spellID, spellName)
 	return GetSpellLink(spellID) or tostring(spellName)
 end
@@ -41,23 +59,33 @@ function A.GetDurationSuffix(duration)
 end
 
 function A.FormatCastMessage(sourceName, spellID, spellName, destName, duration)
+  local template = A.L.castMessage
 	local actorName = A.GetDisplayActorName(sourceName)
 	local spellText = A.GetSpellText(spellID, spellName)
 	local displayTarget = A.GetDisplayTarget(destName)
 	local durationSuffix = A.GetDurationSuffix(duration)
+
 	if displayTarget then
 		if actorName then
-			return string.format(A.L.castOnMessage, actorName, spellText, displayTarget, durationSuffix)
-		end
+			template = A.L.castOnMessage
+    else
+      template = A.L.castOnMessageNoSource
+    end
+  else
+    if actorName then
+      template = A.L.castMessage
+    else
+      template = A.L.castMessageNoSource
+    end
+  end
 
-		return string.format(A.L.castOnMessageNoSource, spellText, displayTarget, durationSuffix)
-	end
-
-	if actorName then
-		return string.format(A.L.castMessage, actorName, spellText, durationSuffix)
-	end
-
-	return string.format(A.L.castMessageNoSource, spellText, durationSuffix)
+	return A.RenderTemplate(template,
+    {
+      ["spell:source"] = actorName,
+      ["spell:link"] = spellText,
+      ["spell:target"] = displayTarget,
+      ["spell:duration"] = durationSuffix
+    })
 end
 
 function A.FormatCountdownMessage(sourceName, spellID, spellName, destName, secondsRemaining)

@@ -48,7 +48,9 @@ A.localeStrings = {
 		missMessage = "%s Cast %s on %s but it %s!",
 		missNoTargetMessage = "%s Cast %s but it %s!",
 		missMessageNoSource = "Cast %s on %s but it %s!",
-		missNoTargetMessageNoSource = "Cast %s but it %s!"
+		missNoTargetMessageNoSource = "Cast %s but it %s!",
+    interruptMessage = "%s interrupted %'s %s!",
+    interruptNoTargetMessageNoSource = "%s interrupted!"
 	},
 	koKR = {
 		announce = "알림",
@@ -97,7 +99,9 @@ A.localeStrings = {
 		missMessage = "%s 시전 %s -> %s, 결과: %s!",
 		missNoTargetMessage = "%s 시전 %s, 결과: %s!",
 		missMessageNoSource = "시전 %s -> %s, 결과: %s!",
-		missNoTargetMessageNoSource = "시전 %s, 결과: %s!"
+		missNoTargetMessageNoSource = "시전 %s, 결과: %s!",
+    interruptMessage = "%s는 %s의 %s 차단했다!",
+    interruptNoTargetMessageNoSource = "%s 차단!"
 	}
 }
 
