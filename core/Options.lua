@@ -26,6 +26,7 @@ function A.RefreshOptionsPanel()
 			A.optionLabels.trackTrinkets..": "..A.ColorText(Announcer_Options.trackTrinkets).."    "..
 			A.optionLabels.showPlayerName..": "..A.ColorText(Announcer_Options.showPlayerName).."    "..
 			A.optionLabels.showTarget..": "..A.ColorText(Announcer_Options.showTarget).."    "..
+			A.optionLabels.externalWhispers..": "..A.ColorText(Announcer_Options.externalWhispers).."    ".. 
 			A.optionLabels.debug..": "..A.ColorText(Announcer_Options.debug).."    "..
 			A.L.statusChannel..": "..A.channelModeLabels[Announcer_Options.channelMode].."    "..
 			A.L.statusMode..": "..A.announceModeLabels[Announcer_Options.announceMode]

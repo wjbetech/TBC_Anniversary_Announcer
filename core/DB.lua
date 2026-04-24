@@ -8,6 +8,7 @@ A.optionDefaults = {
 	trackTrinkets = false,
 	showPlayerName = true,
 	showTarget = true,
+	externalWhispers = false,
 	channelMode = "priority",
 	announceMode = "ending"
 }
@@ -17,6 +18,7 @@ A.optionOrder = {
 	"trackTrinkets",
 	"showPlayerName",
 	"showTarget",
+	"externalWhispers",
 	"debug"
 }
 

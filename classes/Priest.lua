@@ -49,7 +49,8 @@ A.RegisterSpellDefinition(
     duration = 15,
     flags = {
       announceTarget = true,
-      showRaidIcon = true
+      showRaidIcon = true,
+      whisperTarget = true
     },
     spellID = 10060
   }
@@ -64,7 +65,7 @@ A.RegisterSpellDefinition(
     duration = 8,
     flags = {
       announceTarget = true,
-      showRaidIcon = true
+      showRaidIcon = true,
     },
     spellID = 33206
   }

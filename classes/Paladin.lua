@@ -110,7 +110,8 @@ A.RegisterSpellDefinition(
     behavior = "target_aura",
     flags = {
       announceTarget = true,
-      showRaidIcon = true
+      showRaidIcon = true,
+      whisperTarget = true
     },
     spellID = 19752
   }
@@ -124,7 +125,8 @@ A.RegisterSpellDefinition(
     behavior = "cast_success",
     flags = {
       announceTarget = true,
-      showRaidIcon = true
+	  showRaidIcon = true,
+	  whisperTarget = true
     },
     spellID = 633
   }

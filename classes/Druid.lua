@@ -75,7 +75,8 @@ A.RegisterSpellDefinition(
     duration = 20,
     flags = {
       announceTarget = true,
-      showRaidIcon = true
+      showRaidIcon = true,
+      whisperTarget = true
     },
     spellID = 29166
   }

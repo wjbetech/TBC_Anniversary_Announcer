@@ -36,7 +36,7 @@ The core principles follow this:
 - [x] Separate self aura, target aura, cast success, and outcome handling
 - [x] Add clean success path for tracked spells
 - [x] Add clean failure path for miss, resist, and immune
-- [ ] Prevent duplicate messages on refresh or reapply
+- [x] Prevent duplicate messages on refresh or reapply
 - [x] Handle nil target data safely
 
 ## Phase 3: Message Formatting
@@ -57,53 +57,55 @@ The core principles follow this:
 - [x] Localize immune messaging
 - [ ] Localize break messaging
 - [x] Localize expiry messaging
-- [ ] Add labels for new categories
+- [x] Add labels for new categories
 - [ ] Add labels for new options
 - [ ] Remove hard-coded English from logic paths
 
 ## Phase 5: Defensives
 
-- [ ] Mark defensive spells in class data
-- [ ] Announce successful defensive use
-- [ ] Announce target for externals
+- [x] Mark defensive spells in class data
+- [x] Announce successful defensive use
+- [x] Announce target for externals
 - [ ] Whisper target for externals
+- [x] Whisper target for externals
 - [ ] Prevent self-whisper
+- [x] Prevent self-whisper
 - [ ] Test one full defensive flow end-to-end
 
 ## Phase 6: Offensives
 
-- [ ] Mark offensive spells in class data
-- [ ] Limit offensives to curated list
+- [x] Mark offensive spells in class data
+- [x] Limit offensives to curated list
 - [ ] Add menu warning for possible spam
-- [ ] Announce target where relevant
+- [x] Announce target where relevant
 - [ ] Whisper target for externals
-- [ ] Support self-only offensives cleanly
+- [x] Support self-only offensives cleanly
 - [ ] Test one self-only offensive
 - [ ] Test one external offensive
 
 ## Phase 7: Taunts
 
-- [ ] Mark taunt spells in class data
-- [ ] Announce successful taunts
-- [ ] Announce target name for taunts
-- [ ] Announce target raid icon when available
-- [ ] Announce taunt miss
-- [ ] Announce taunt resist
-- [ ] Announce taunt immune
+- [x] Mark taunt spells in class data
+- [x] Announce successful taunts
+- [x] Announce target name for taunts
+- [x] Announce target raid icon when available
+- [x] Announce taunt miss
+- [x] Announce taunt resist
+- [x] Announce taunt immune
 - [ ] Test taunt success and failure paths
 
 ## Phase 8: Crowd-Control
 
-- [ ] Mark CC spells in class data
+- [x] Mark CC spells in class data
 - [ ] Add my CC vs all tracked CC option
-- [ ] Announce successful CC application
-- [ ] Announce target name for CC
-- [ ] Announce target raid icon when available
-- [ ] Announce CC miss
-- [ ] Announce CC resist
-- [ ] Announce CC immune
+- [x] Announce successful CC application
+- [x] Announce target name for CC
+- [x] Announce target raid icon when available
+- [x] Announce CC miss
+- [x] Announce CC resist
+- [x] Announce CC immune
 - [ ] Add early break detection
-- [ ] Add standard expiry handling
+- [x] Add standard expiry handling
 - [ ] Prevent break and expiry from colliding
 - [ ] Test one full CC lifecycle
 
@@ -122,11 +124,11 @@ The core principles follow this:
 
 ## Phase 10: Trinkets
 
-- [ ] Review existing trinket path in core/Trinkets.lua
-- [ ] Keep trinkets usage-only
+- [x] Review existing trinket path in core/Trinkets.lua
+- [x] Keep trinkets usage-only
 - [ ] Add menu warning for possible spam
-- [ ] Ensure no expiry messages fire for trinkets
-- [ ] Verify GetItemSpell handling remains safe
+- [x] Ensure no expiry messages fire for trinkets
+- [x] Verify GetItemSpell handling remains safe
 - [ ] Test both trinket slots
 
 ## Phase 11: Dispels
@@ -141,15 +143,15 @@ The core principles follow this:
 
 ## Phase 12: Options and Saved Variables
 
-- [ ] Replace old option assumptions in core/DB.lua
+- [x] Replace old option assumptions in core/DB.lua
 - [ ] Add category-specific toggles
 - [ ] Add target announcement options
-- [ ] Add external whisper options
+- [x] Add external whisper options
 - [ ] Add CC scope option
 - [ ] Add menu warning text for noisy categories
-- [ ] Migrate old taunt option safely
-- [ ] Migrate old tracked spell options safely
-- [ ] Verify clean defaults for new options
+- [x] Migrate old taunt option safely
+- [x] Migrate old tracked spell options safely
+- [x] Verify clean defaults for new options
 
 ## Phase 13: Class Data Expansion
 

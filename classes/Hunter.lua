@@ -19,6 +19,11 @@ A.RegisterSpellDefinition(
     category = "utility",
     behavior = "target_aura",
     duration = 30,
+      flags = {
+        announceTarget = true,
+        showRaidIcon = true,
+        whisperTarget = true
+      },
     spellID = 34477,
   }
 )
