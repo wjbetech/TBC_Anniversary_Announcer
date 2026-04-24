@@ -3,6 +3,7 @@ std = "lua51"
 globals = {
    "Announcer",
    "Announcer_Options",
+   "Announcer_OnLoad",
    "C_Timer",
    "CombatLogGetCurrentEventInfo",
    "CreateFrame",

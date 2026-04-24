@@ -13,15 +13,15 @@ for _, classToken in ipairs(A.classOrder) do
 end
 
 function A.RegisterSpellDefinition(spellDefinition)
-  
+
   if not spellDefinition.category or not spellDefinition.behavior then
     return
   end
-  
+
   if not spellDefinition.key or not spellDefinition.class or not spellDefinition.spellID then
     return
   end
-  
+
 	local registryGroup = A.registry[spellDefinition.behavior]
 	if registryGroup == nil then
 		return
@@ -53,7 +53,7 @@ function A.GetBehaviorDefinition(behavior, spellName)
   if A.registry[behavior] == nil then
     return nil
   end
-  
+
   return A.registry[behavior][spellName]
 end
 

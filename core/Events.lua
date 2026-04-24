@@ -27,8 +27,8 @@ function A.GetCombatLogContext()
     destName = destName,
     destFlags = destFlags,
     destRaidFlags = destRaidFlags,
-    extraArg1 = extraArg1,
-    extraArg2 = extraArg2,
+    spellID = extraArg1,
+    spellName = extraArg2,
     extraArg3 = extraArg3,
     extraArg4 = extraArg4
   }
@@ -42,8 +42,81 @@ function A.HandleSourceCombatEvent(context, playerGUID)
   local castSuccessDefinition = A.GetBehaviorDefinition("cast_success", context.extraArg2)
   local targetAuraDefinition = A.GetBehaviorDefinition("target_aura", context.extraArg2)
 
+  -- handle spell misses (maybe immunes and resists here too)
+  if context.combatEvent == "SPELL_MISSED"
+  then
+    local missedDefinition = castSuccessDefinition
+    or targetAuraDefinition
+
+    local missType = context.extraArg4 -- miss type (miss, dodge, resist, immune, etc)
+
+    if missType == "MISS"
+    and not missedDefinition.flags.announceOnMiss
+    then
+      return nil
+    end
+
+    if missType == "DODGE"
+    and not missedDefinition.flags.announceOnDodge
+    then
+      return nil
+    end
+
+    if missType == "PARRY"
+    and not missedDefinition.flags.announceOnParry
+    then
+      return nil
+    end
+
+    if missType == "RESIST"
+    and not missedDefinition.flags.announceOnResist
+    then
+      return nil
+    end
+
+    if missType == "IMMUNE"
+    and not missedDefinition.flags.announceOnImmune
+    then
+      return nil
+    end
+
+    if missedDefinition
+    then
+      return A.FormatMissMessage(
+        context.sourceName,
+        context.extraArg1,
+        context.extraArg2,
+        context.destName,
+        context.extraArg4 -- miss type (miss, dodge, resist, immune, etc)
+      )
+    end
+  end
+
+  if context.combatEvent == "SPELL_INTERRUPT"
+  and castSuccessDefinition
+  then
+    return A.FormatCastMessage(
+      context.sourceName,
+      context.extraArg1,
+      context.extraArg2,
+      context.destName,
+      nil,
+      true -- isInterrupt
+    )
+  end
+
   -- this should refer to successful casts
-  if context.combatEvent == "SPELL_CAST_SUCCESS" and castSuccessDefinition then
+  -- and ensure only true interrupts are announced
+  if context.combatEvent == "SPELL_CAST_SUCCESS"
+  and castSuccessDefinition
+  then
+
+    -- don't announce interrupts on non-interruptables
+    if castSuccessDefinition.flags.interruptOnly
+    then
+      return nil
+    end
+
     return A.FormatCastMessage(
       context.sourceName,
       context.extraArg1,
@@ -53,7 +126,7 @@ function A.HandleSourceCombatEvent(context, playerGUID)
     )
   end
 
-  -- this should refer to the target-aura
+  -- this should refer to target-aura checks
   if (context.combatEvent == "SPELL_AURA_APPLIED"
   or context.combatEvent == "SPELL_AURA_REFRESH")
   and targetAuraDefinition
@@ -85,6 +158,7 @@ function A.HandleSourceCombatEvent(context, playerGUID)
     )
   end
 
+  -- this should refer to removals of auras (natural and unnatural)
   if context.combatEvent == "SPELL_AURA_REMOVED"
   and targetAuraDefinition
   then
@@ -136,6 +210,21 @@ function A.HandleDestCombatEvent(context, playerGUID)
       nil,
       selfAuraDefinition.duration
     )
+  end
+
+  if context.combatEvent == "SPELL_AURA_REMOVED"
+  and selfAuraDefinition
+  then
+    A.ClearTrackedAuraTimers(context.extraArg2, context.extraArg1, context.destGUID)
+
+    if Announcer_Options.announceMode == "ending" then
+      return A.FormatEndedMessage(
+        context.sourceName,
+        context.extraArg1,
+        context.extraArg2,
+        nil
+      )
+    end
   end
 
   return nil
