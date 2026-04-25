@@ -2,7 +2,7 @@
 ## Title: ValSpams
 ## Version: @project-version@
 ## Notes: Lightweight TBC Anniversary combat announcement addon.
-## SavedVariablesPerCharacter: ValSpams_Options, Announcer_Options
+## SavedVariablesPerCharacter: ValSpams_Options
 core\Namespace.lua
 core\Localization.lua
 core\Registry.lua
