@@ -1,0 +1,36 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    env:
+      CF_API_KEY: ${{ secrets.CF_API_KEY }}
+      CF_PROJECT_ID: ${{ vars.CF_PROJECT_ID }}
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Package and publish GitHub release
+        if: ${{ env.CF_PROJECT_ID == '' || env.CF_API_KEY == '' }}
+        uses: BigWigsMods/packager@v2
+        env:
+          GITHUB_OAUTH: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Package and publish GitHub and CurseForge releases
+        if: ${{ env.CF_PROJECT_ID != '' && env.CF_API_KEY != '' }}
+        uses: BigWigsMods/packager@v2
+        with:
+          args: -p ${{ env.CF_PROJECT_ID }}
+        env:
+          GITHUB_OAUTH: ${{ secrets.GITHUB_TOKEN }}
+          CF_API_KEY: ${{ env.CF_API_KEY }}

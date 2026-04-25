@@ -18,6 +18,13 @@ my CC vs all CC, category toggles, external whisper options, future spam warning
 
 localized immune/resist/miss wording and any new menu labels.
 
+### Phase 16 Notes
+
+- Profiles should be role-oriented presets rather than full character clones.
+- Dual-spec support should swap the active profile pointer rather than duplicate every option path.
+- Future filtering should stay category-driven first and avoid per-fight hardcoding.
+- Quality-of-life additions should prefer visibility and filtering controls over message throttling.
+
 ## Edge Cases
 
 - raid icon may not exist on target

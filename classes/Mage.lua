@@ -1,4 +1,4 @@
-local A = Announcer
+local A = ValSpams
 
 if not A then
   return
@@ -14,6 +14,7 @@ A.RegisterSpellDefinition(
       announceOnMiss = true,
       announceOnResist = true,
       announceOnImmune = true,
+      announceOnBreak = true,
       announceTarget = true,
       showRaidIcon = true
     },
@@ -47,5 +48,22 @@ A.RegisterSpellDefinition(
       interruptOnly = true
     },
     spellID = 2139
+  }
+)
+
+A.RegisterSpellDefinition(
+  {
+    key = "mage_spellsteal",
+    class = "MAGE",
+    category = "offensive",
+    behavior = "cast_success",
+    flags = {
+      dispelOnly = true,
+      announceOnResist = true,
+      announceOnImmune = true,
+      announceTarget = true,
+      showRaidIcon = true
+    },
+    spellID = 30449
   }
 )

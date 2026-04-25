@@ -1,4 +1,4 @@
-local A = Announcer
+local A = ValSpams
 
 if not A then
 	return
@@ -15,6 +15,7 @@ A.RegisterSpellDefinition(
       announceOnMiss = true,
       announceOnResist = true,
       announceOnImmune = true,
+      announceOnBreak = true,
       announceTarget = true,
       showRaidIcon = true
     },
@@ -33,6 +34,7 @@ A.RegisterSpellDefinition(
       announceOnMiss = true,
       announceOnResist = true,
       announceOnImmune = true,
+      announceOnBreak = true,
       announceTarget = true,
       showRaidIcon = true
     },
@@ -66,7 +68,25 @@ A.RegisterSpellDefinition(
     flags = {
       announceTarget = true,
       showRaidIcon = true,
+      whisperTarget = true
     },
     spellID = 33206
+  }
+)
+
+A.RegisterSpellDefinition(
+  {
+    key = "priest_dispel_magic",
+    class = "PRIEST",
+    category = "utility",
+    behavior = "cast_success",
+    flags = {
+      dispelOnly = true,
+      announceOnResist = true,
+      announceOnImmune = true,
+      announceTarget = true,
+      showRaidIcon = true
+    },
+    spellID = 527
   }
 )

@@ -1,4 +1,5 @@
-local A = Announcer
+---@diagnostic disable: undefined-global
+local A = ValSpams
 
 function A.ColorText(value)
 	if value then
@@ -13,15 +14,15 @@ function A.Message(msg)
 		msg = "nil"
 	end
 
-	DEFAULT_CHAT_FRAME:AddMessage("|cffACC3EB-[Announcer]- |r"..msg)
+	DEFAULT_CHAT_FRAME:AddMessage("|cffACC3EB-[ValSpams]- |r"..msg)
 end
 
 function A.BroadcastMessage(msg)
-	if msg == "" or not Announcer_Options.announce then
+	if msg == nil or msg == "" or not ValSpams_Options.announce then
 		return
 	end
 
-	if Announcer_Options.channelMode == "yell_only" then
+	if ValSpams_Options.channelMode == "yell_only" then
 		SendChatMessage(msg, "YELL")
 		return
 	end

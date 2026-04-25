@@ -1,4 +1,4 @@
-local A = Announcer
+local A = ValSpams
 
 if not A then
 	return
@@ -35,6 +35,14 @@ A.RegisterSpellDefinition(
     category = "crowd_control",
     behavior = "target_aura",
     duration = 3,
+    flags = {
+      announceOnMiss = true,
+      announceOnResist = true,
+      announceOnImmune = true,
+      announceOnBreak = true,
+      announceTarget = true,
+      showRaidIcon = true
+    },
     spellID = 19577
   }
 )
@@ -50,6 +58,7 @@ A.RegisterSpellDefinition(
       announceOnMiss = true,
       announceOnResist = true,
       announceOnImmune = true,
+      announceOnBreak = true,
       announceTarget = true,
       showRaidIcon = true
     },

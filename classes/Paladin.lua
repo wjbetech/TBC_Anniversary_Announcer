@@ -1,4 +1,4 @@
-local A = Announcer
+local A = ValSpams
 
 if not A then
 	return
@@ -10,10 +10,12 @@ A.RegisterSpellDefinition(
     class = "PALADIN",
     category = "crowd_control",
     behavior = "target_aura",
+    duration = 6,
     flags = {
       announceOnMiss = true,
       announceOnResist = true,
       announceOnImmune = true,
+      announceOnBreak = true,
       announceTarget = true,
       showRaidIcon = true
     },
@@ -31,7 +33,8 @@ A.RegisterSpellDefinition(
     duration = 10,
       flags = {
         announceTarget = true,
-        showRaidIcon = true
+        showRaidIcon = true,
+        whisperTarget = true
       },
     spellID = 1022
   }
@@ -47,7 +50,8 @@ A.RegisterSpellDefinition(
     duration = 14,
     flags = {
       announceTarget = true,
-      showRaidIcon = true
+      showRaidIcon = true,
+      whisperTarget = true
     },
     spellID = 1044
   }
@@ -63,9 +67,44 @@ A.RegisterSpellDefinition(
     duration = 30,
     flags = {
       announceTarget = true,
-      showRaidIcon = true
+      showRaidIcon = true,
+      whisperTarget = true
     },
     spellID = 6940
+  }
+)
+
+A.RegisterSpellDefinition(
+  {
+    key = "paladin_cleanse",
+    class = "PALADIN",
+    category = "utility",
+    behavior = "cast_success",
+    flags = {
+      dispelOnly = true,
+      announceOnResist = true,
+      announceOnImmune = true,
+      announceTarget = true,
+      showRaidIcon = true
+    },
+    spellID = 4987
+  }
+)
+
+A.RegisterSpellDefinition(
+  {
+    key = "paladin_righteous_defense",
+    class = "PALADIN",
+    category = "taunt",
+    behavior = "target_aura",
+    flags = {
+      announceOnMiss = true,
+      announceOnResist = true,
+      announceOnImmune = true,
+	      announceTarget = true,
+	      showRaidIcon = true
+    },
+    spellID = 31789
   }
 )
 
@@ -99,6 +138,66 @@ A.RegisterSpellDefinition(
     behavior = "self_aura",
     duration = 20,
     spellID = 31884
+  }
+)
+
+A.RegisterSpellDefinition(
+  {
+    key = "paladin_judgement",
+    class = "PALADIN",
+    category = "important_tank_outcome",
+    behavior = "cast_success",
+    flags = {
+      outcomeOnly = true,
+      announceOnMiss = true,
+      announceOnDodge = true,
+      announceOnParry = true,
+      announceOnResist = true,
+      announceOnImmune = true,
+      announceTarget = true,
+      showRaidIcon = true
+    },
+    spellID = 20271
+  }
+)
+
+A.RegisterSpellDefinition(
+  {
+    key = "paladin_avengers_shield",
+    class = "PALADIN",
+    category = "important_tank_outcome",
+    behavior = "cast_success",
+    flags = {
+      outcomeOnly = true,
+      announceOnMiss = true,
+      announceOnDodge = true,
+      announceOnParry = true,
+      announceOnResist = true,
+      announceOnImmune = true,
+      announceTarget = true,
+      showRaidIcon = true
+    },
+    spellID = 31935
+  }
+)
+
+A.RegisterSpellDefinition(
+  {
+    key = "paladin_exorcism",
+    class = "PALADIN",
+    category = "important_tank_outcome",
+    behavior = "cast_success",
+    flags = {
+      outcomeOnly = true,
+      announceOnMiss = true,
+      announceOnDodge = true,
+      announceOnParry = true,
+      announceOnResist = true,
+      announceOnImmune = true,
+      announceTarget = true,
+      showRaidIcon = true
+    },
+    spellID = 879
   }
 )
 

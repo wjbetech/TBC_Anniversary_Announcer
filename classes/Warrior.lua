@@ -1,4 +1,4 @@
-local A = Announcer
+local A = ValSpams
 
 if not A then
 	return
@@ -28,6 +28,7 @@ A.RegisterSpellDefinition(
       announceOnMiss = true,
       announceOnResist = true,
       announceOnImmune = true,
+      announceOnBreak = true,
       announceTarget = true,
       showRaidIcon = true
     },
@@ -45,6 +46,7 @@ A.RegisterSpellDefinition(
       announceOnMiss = true,
       announceOnResist = true,
       announceOnImmune = true,
+      announceOnBreak = true,
       announceTarget = true,
       showRaidIcon = true
     },
@@ -83,6 +85,46 @@ A.RegisterSpellDefinition(
       showRaidIcon = true
     },
     spellID = 355
+  }
+)
+
+A.RegisterSpellDefinition(
+  {
+    key = "warrior_devastate",
+    class = "WARRIOR",
+    category = "important_tank_outcome",
+    behavior = "cast_success",
+    flags = {
+      outcomeOnly = true,
+      announceOnMiss = true,
+      announceOnDodge = true,
+      announceOnParry = true,
+      announceOnResist = true,
+      announceOnImmune = true,
+      announceTarget = true,
+      showRaidIcon = true
+    },
+    spellID = 20243
+  }
+)
+
+A.RegisterSpellDefinition(
+  {
+    key = "warrior_shield_slam",
+    class = "WARRIOR",
+    category = "important_tank_outcome",
+    behavior = "cast_success",
+    flags = {
+      outcomeOnly = true,
+      announceOnMiss = true,
+      announceOnDodge = true,
+      announceOnParry = true,
+      announceOnResist = true,
+      announceOnImmune = true,
+      announceTarget = true,
+      showRaidIcon = true
+    },
+    spellID = 23922
   }
 )
 

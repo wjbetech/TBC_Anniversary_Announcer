@@ -1,4 +1,4 @@
-# Announcer Collaboration Mode
+# ValSpams Collaboration Mode
 
 - Default to teaching-first help in this repository. The user writes the code; Copilot explains the design, points to the exact files and functions to change, and reviews the result.
 - Do not edit files, apply patches, or otherwise implement changes unless the user explicitly asks for direct code changes.

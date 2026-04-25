@@ -1,4 +1,4 @@
-local A = Announcer
+local A = ValSpams
 
 if not A then
 	return
@@ -15,6 +15,7 @@ A.RegisterSpellDefinition(
       announceOnMiss = true,
       announceOnResist = true,
       announceOnImmune = true,
+      announceOnBreak = true,
       announceTarget = true,
       showRaidIcon = true
     },
@@ -32,6 +33,7 @@ A.RegisterSpellDefinition(
       announceOnMiss = true,
       announceOnResist = true,
       announceOnImmune = true,
+      announceOnBreak = true,
       announceTarget = true,
       showRaidIcon = true
     },
@@ -60,6 +62,7 @@ A.RegisterSpellDefinition(
       announceOnMiss = true,
       announceOnResist = true,
       announceOnImmune = true,
+      announceOnBreak = true,
       announceTarget = true,
       showRaidIcon = true
     },
@@ -78,6 +81,7 @@ A.RegisterSpellDefinition(
       announceOnMiss = true,
       announceOnResist = true,
       announceOnImmune = true,
+      announceOnBreak = true,
       announceTarget = true,
       showRaidIcon = true
     },

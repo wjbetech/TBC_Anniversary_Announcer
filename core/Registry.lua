@@ -1,4 +1,5 @@
-local A = Announcer
+---@diagnostic disable: undefined-global
+local A = ValSpams
 
 A.registry = {
 	self_aura = {},
@@ -43,18 +44,22 @@ function A.RegisterSpellDefinition(spellDefinition)
 		spellName = spellName
 	}
 
-	registryGroup[spellName] = storedDefinition
-	A.registry.classSpellDefinitions[storedDefinition.class] = A.registry.classSpellDefinitions[storedDefinition.class] or {}
-	table.insert(A.registry.classSpellDefinitions[storedDefinition.class], storedDefinition)
+	registryGroup[spellDefinition.spellID] = storedDefinition
+	A.registry.classSpellDefinitions[storedDefinition.class] =
+		A.registry.classSpellDefinitions[storedDefinition.class] or {}
+	table.insert(
+		A.registry.classSpellDefinitions[storedDefinition.class],
+		storedDefinition
+	)
 	table.insert(A.registry.allSpellDefinitions, storedDefinition)
 end
 
-function A.GetBehaviorDefinition(behavior, spellName)
+function A.GetBehaviorDefinition(behavior, spellID)
   if A.registry[behavior] == nil then
     return nil
   end
 
-  return A.registry[behavior][spellName]
+	return A.registry[behavior][spellID]
 end
 
 function A.GetTrackedSpellDefinitions()

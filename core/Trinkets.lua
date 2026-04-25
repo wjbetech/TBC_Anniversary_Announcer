@@ -1,4 +1,5 @@
-local A = Announcer
+---@diagnostic disable: undefined-global
+local A = ValSpams
 
 A.state.trinketSpells = A.state.trinketSpells or {}
 

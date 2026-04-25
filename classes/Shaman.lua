@@ -1,4 +1,4 @@
-local A = Announcer
+local A = ValSpams
 
 if not A then
 	return
@@ -45,6 +45,23 @@ A.RegisterSpellDefinition(
     behavior = "cast_success",
     duration = 40,
     spellID = 32182
+  }
+)
+
+A.RegisterSpellDefinition(
+  {
+    key = "shaman_purge",
+    class = "SHAMAN",
+    category = "utility",
+    behavior = "cast_success",
+    flags = {
+      dispelOnly = true,
+      announceOnResist = true,
+      announceOnImmune = true,
+      announceTarget = true,
+      showRaidIcon = true
+    },
+    spellID = 370
   }
 )
 

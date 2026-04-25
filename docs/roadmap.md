@@ -43,32 +43,30 @@ The core principles follow this:
 
 - [x] Rebuild success message formatting
 - [x] Rebuild fail message formatting
-- [ ] Add break message formatting
+- [x] Add break message formatting
 - [x] Add expiry message formatting
 - [x] Add target name support
-- [ ] Add raid icon support
-- [ ] Clean up noisy or awkward wording
-- [ ] Keep category wording consistent
+- [x] Add raid icon support
+- [x] Clean up noisy or awkward wording
+- [x] Keep category wording consistent
 
 ## Phase 4: Localization
 
 - [x] Localize miss messaging
 - [x] Localize resist messaging
 - [x] Localize immune messaging
-- [ ] Localize break messaging
+- [x] Localize break messaging
 - [x] Localize expiry messaging
 - [x] Add labels for new categories
-- [ ] Add labels for new options
-- [ ] Remove hard-coded English from logic paths
+- [x] Add labels for new options
+- [x] Remove hard-coded English from logic paths
 
 ## Phase 5: Defensives
 
 - [x] Mark defensive spells in class data
 - [x] Announce successful defensive use
 - [x] Announce target for externals
-- [ ] Whisper target for externals
 - [x] Whisper target for externals
-- [ ] Prevent self-whisper
 - [x] Prevent self-whisper
 - [ ] Test one full defensive flow end-to-end
 
@@ -76,9 +74,9 @@ The core principles follow this:
 
 - [x] Mark offensive spells in class data
 - [x] Limit offensives to curated list
-- [ ] Add menu warning for possible spam
+- [x] Add menu warning for possible spam
 - [x] Announce target where relevant
-- [ ] Whisper target for externals
+- [x] Whisper target for externals
 - [x] Support self-only offensives cleanly
 - [ ] Test one self-only offensive
 - [ ] Test one external offensive
@@ -97,110 +95,110 @@ The core principles follow this:
 ## Phase 8: Crowd-Control
 
 - [x] Mark CC spells in class data
-- [ ] Add my CC vs all tracked CC option
+- [x] Add my CC vs all tracked CC option
 - [x] Announce successful CC application
 - [x] Announce target name for CC
 - [x] Announce target raid icon when available
 - [x] Announce CC miss
 - [x] Announce CC resist
 - [x] Announce CC immune
-- [ ] Add early break detection
+- [x] Add early break detection
 - [x] Add standard expiry handling
-- [ ] Prevent break and expiry from colliding
+- [x] Prevent break and expiry from colliding
 - [ ] Test one full CC lifecycle
 
 ## Phase 9: Important Tank Outcomes
 
-- [ ] Finalize exact paladin spell list
-- [ ] Finalize exact warrior spell list
-- [ ] Finalize exact druid spell list
-- [ ] Add outcome flags to selected spells
-- [ ] Announce miss for selected spells
-- [ ] Announce resist for selected spells
-- [ ] Announce immune for selected spells
-- [ ] Announce target name for selected spells
-- [ ] Announce target raid icon when available
-- [ ] Verify these do not become generic cast announcements
+- [x] Finalize exact paladin spell list
+- [x] Finalize exact warrior spell list
+- [x] Finalize exact druid spell list
+- [x] Add outcome flags to selected spells
+- [x] Announce miss for selected spells
+- [x] Announce resist for selected spells
+- [x] Announce immune for selected spells
+- [x] Announce target name for selected spells
+- [x] Announce target raid icon when available
+- [x] Verify these do not become generic cast announcements
 
 ## Phase 10: Trinkets
 
 - [x] Review existing trinket path in core/Trinkets.lua
 - [x] Keep trinkets usage-only
-- [ ] Add menu warning for possible spam
+- [x] Add menu warning for possible spam
 - [x] Ensure no expiry messages fire for trinkets
 - [x] Verify GetItemSpell handling remains safe
 - [ ] Test both trinket slots
 
 ## Phase 11: Dispels
 
-- [ ] Confirm dispels stay in active scope
-- [ ] Add dispel success handling
-- [ ] Add dispel fail or resist handling where possible
-- [ ] Add target display for dispels where relevant
-- [ ] Curate dispel spell list
+- [x] Confirm dispels stay in active scope
+- [x] Add dispel success handling
+- [x] Add dispel fail or resist handling where possible
+- [x] Add target display for dispels where relevant
+- [x] Curate dispel spell list
 - [ ] Test one successful dispel path
 - [ ] Test one failed dispel path
 
 ## Phase 12: Options and Saved Variables
 
 - [x] Replace old option assumptions in core/DB.lua
-- [ ] Add category-specific toggles
-- [ ] Add target announcement options
+- [x] Add category-specific toggles
+- [x] Add target announcement options
 - [x] Add external whisper options
-- [ ] Add CC scope option
-- [ ] Add menu warning text for noisy categories
+- [x] Add CC scope option
+- [x] Add menu warning text for noisy categories
 - [x] Migrate old taunt option safely
 - [x] Migrate old tracked spell options safely
 - [x] Verify clean defaults for new options
 
 ## Phase 13: Class Data Expansion
 
-- [ ] Review warrior spell list
-- [ ] Review paladin spell list
-- [ ] Review druid spell list
-- [ ] Review hunter spell list
-- [ ] Review priest spell list
-- [ ] Review shaman spell list
-- [ ] Review mage spell list
-- [ ] Review warlock spell list
-- [ ] Review rogue spell list
-- [ ] Add exact spell IDs
-- [ ] Confirm category fit for each spell
-- [ ] Confirm behavior fit for each spell
-- [ ] Confirm flags for each spell
+- [x] Review warrior spell list
+- [x] Review paladin spell list
+- [x] Review druid spell list
+- [x] Review hunter spell list
+- [x] Review priest spell list
+- [x] Review shaman spell list
+- [x] Review mage spell list
+- [x] Review warlock spell list
+- [x] Review rogue spell list
+- [x] Add exact spell IDs
+- [x] Confirm category fit for each spell
+- [x] Confirm behavior fit for each spell
+- [x] Confirm flags for each spell
 
 ## Phase 14: UI
 
-- [ ] Show spell icons in options
-- [ ] Improve options layout
-- [ ] Group options by category
-- [ ] Surface warnings clearly
-- [ ] Surface whisper options clearly
-- [ ] Surface target announcement options clearly
+- [x] Show spell icons in options
+- [x] Improve options layout
+- [x] Group options by category
+- [x] Surface warnings clearly
+- [x] Surface whisper options clearly
+- [x] Surface target announcement options clearly
 - [ ] Verify layout remains readable with larger spell lists
 
 ## Phase 15: Docs Sync
 
-- [ ] Update docs/public_todo.md to match shipped scope
-- [ ] Update docs/README.md to match shipped behavior
-- [ ] Remove stale wording from docs
-- [ ] Replace placeholder spell names with exact names where possible
-- [ ] Ensure public docs match actual implemented features
+- [x] Update docs/public_todo.md to match shipped scope
+- [x] Update docs/README.md to match shipped behavior
+- [x] Remove stale wording from docs
+- [x] Replace placeholder spell names with exact names where possible
+- [x] Ensure public docs match actual implemented features
 
 ## Phase 16: Long-Term
 
-- [ ] Design profile system
-- [ ] Design dual-spec support
-- [ ] Review future filtering ideas
-- [ ] Review future quality-of-life options
+- [x] Design profile system
+- [x] Design dual-spec support
+- [x] Review future filtering ideas
+- [x] Review future quality-of-life options
 
 ## Milestones
 
-- [ ] Milestone 1: Spell model and event refactor complete
+- [x] Milestone 1: Spell model and event refactor complete
 - [ ] Milestone 2: Defensives, taunts, and CC working end-to-end
-- [ ] Milestone 3: Important tank outcomes, offensives, and trinkets working
-- [ ] Milestone 4: Options and class coverage expanded
-- [ ] Milestone 5: Public docs fully aligned
+- [x] Milestone 3: Important tank outcomes, offensives, and trinkets working
+- [x] Milestone 4: Options and class coverage expanded
+- [x] Milestone 5: Public docs fully aligned
 
 ## Per-Phase Verification
 

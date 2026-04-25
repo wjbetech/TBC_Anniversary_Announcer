@@ -1,0 +1,10 @@
+package-as: ValSpams
+
+ignore:
+
+- .github
+- docs
+- README.md
+- CHANGELOG.md
+- .gitignore
+- .luacheckrc

@@ -1,4 +1,8 @@
-local A = Announcer
+local A = ValSpams
+
+if not A then
+  return
+end
 
 A.RegisterSpellDefinition(
  {
@@ -25,13 +29,10 @@ A.RegisterSpellDefinition(
       announceOnMiss = true,
       announceOnResist = true,
       announceOnImmune = true,
+      announceOnBreak = true,
       announceTarget = true,
       showRaidIcon = true
     },
     spellID = 5782
   }
 )
-
-if not A then
-	return
-end
