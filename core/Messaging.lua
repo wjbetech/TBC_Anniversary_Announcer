@@ -1,5 +1,5 @@
 ---@diagnostic disable: undefined-global
-local A = ValSpams
+local A = _G.ValSpams
 local ValSpams_Options = _G.ValSpams_Options
 
 function A.ColorText(value)

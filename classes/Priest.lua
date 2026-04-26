@@ -1,4 +1,4 @@
-local A = ValSpams
+local A = _G.ValSpams
 
 if not A then
 	return

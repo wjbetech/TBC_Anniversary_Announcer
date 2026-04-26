@@ -1,5 +1,11 @@
 # Changelog
 
+## Beta Release 1.0.2-beta.3 (2026.04.26)
+
+- Beta release
+  - Harden player-owned spell detection for Hammer of Justice, taunts, tank warnings, and trinkets when combat-log source data is inconsistent.
+  - Add workspace Lua language-server config and switch module roots to `_G.ValSpams` to reduce false `ValSpams` diagnostics in VS Code.
+
 ## Beta Release 1.0.2-beta.2 (2026.04.26)
 
 - Beta release

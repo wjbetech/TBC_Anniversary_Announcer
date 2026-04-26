@@ -1,5 +1,5 @@
 ---@diagnostic disable: undefined-global, undefined-field
-local A = ValSpams
+local A = _G.ValSpams
 local ValSpams_Options = _G.ValSpams_Options
 
 local RAID_ICON_FLAGS = {
@@ -241,6 +241,17 @@ function A.IsPlayerGUID(unitGUID)
   return type(unitGUID) == "string" and string.find(unitGUID, "^Player%-") ~= nil
 end
 
+function A.IsPlayerSource(context, playerGUID, playerName)
+  if context.sourceGUID and playerGUID and context.sourceGUID == playerGUID then
+    return true
+  end
+
+  return playerName ~= nil
+    and playerName ~= ""
+    and context.sourceName ~= nil
+    and context.sourceName == playerName
+end
+
 function A.ShouldAnnounceCrowdControlOutcome(context, playerGUID, allowExternalCrowdControl)
   local ownerGUID = A.GetActiveCrowdControlOwner(context)
   if ownerGUID then
@@ -317,12 +328,13 @@ function A.HandleMissedDefinition(context, definition)
 end
 
 function A.HandleSourceCombatEvent(context, playerGUID, allowExternalCrowdControl)
-  local sourceIsPlayer = (context.sourceGUID == playerGUID)
+  local sourceIsPlayer = A.IsPlayerSource(context, playerGUID, UnitName("player"))
   local castSuccessDefinition = A.GetBehaviorDefinition("cast_success", context.spellID)
   local targetAuraDefinition = A.GetBehaviorDefinition("target_aura", context.spellID)
   local trinketDefinition = A.GetTrackedTrinketDefinition(context.spellName)
+  local trackedTrinketSuccess = context.combatEvent == "SPELL_CAST_SUCCESS" and trinketDefinition ~= nil
 
-  if not sourceIsPlayer then
+  if not sourceIsPlayer and not trackedTrinketSuccess then
     if not allowExternalCrowdControl then
       return nil
     end
@@ -581,9 +593,13 @@ end
 function A.HandleCombatLogEvent()
   local context = A.GetCombatLogContext()
   local playerGUID = UnitGUID("player")
+  local playerName = UnitName("player")
   local allowExternalCrowdControl = A.ShouldHandleTrackedCrowdControl(context)
 
-  if not allowExternalCrowdControl and context.sourceGUID ~= playerGUID and context.destGUID ~= playerGUID then
+  if not allowExternalCrowdControl
+  and not A.IsPlayerSource(context, playerGUID, playerName)
+  and context.destGUID ~= playerGUID
+  then
     return
   end
 

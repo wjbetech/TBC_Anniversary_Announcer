@@ -1,5 +1,5 @@
 ---@diagnostic disable: undefined-global
-local A = ValSpams
+local A = _G.ValSpams
 
 A.localeStrings = {
 	enUS = {
