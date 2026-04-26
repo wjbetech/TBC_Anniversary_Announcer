@@ -2,6 +2,27 @@
 local A = _G.ValSpams
 local ValSpams_Options = _G.ValSpams_Options
 
+local function SanitizePublicChatMessage(msg)
+	local sanitizedMessage = tostring(msg or "")
+
+	sanitizedMessage = sanitizedMessage:gsub("|c%x%x%x%x%x%x%x%x", "")
+	sanitizedMessage = sanitizedMessage:gsub("|r", "")
+	sanitizedMessage = sanitizedMessage:gsub("|H.-|h(.-)|h", "%1")
+	sanitizedMessage = sanitizedMessage:gsub("|T.-|t", "")
+
+	return sanitizedMessage
+end
+
+local function SendAnnouncementMessage(msg, chatType, target)
+	local outgoingMessage = msg
+	if chatType == "SAY" or chatType == "YELL" then
+		outgoingMessage = SanitizePublicChatMessage(msg)
+	end
+
+	SendChatMessage(outgoingMessage, chatType, nil, target)
+	return true
+end
+
 function A.ColorText(value)
 	if value then
 		return "|cff00FF00["..tostring(value).."]|r"
@@ -24,20 +45,20 @@ function A.BroadcastMessage(msg)
 	end
 
 	if ValSpams_Options.channelMode == "say_only" then
-		SendChatMessage(msg, "SAY")
+		SendAnnouncementMessage(msg, "SAY")
 		return
 	end
 
 	if ValSpams_Options.channelMode == "yell_only" then
-		SendChatMessage(msg, "YELL")
+		SendAnnouncementMessage(msg, "YELL")
 		return
 	end
 
 	if IsInRaid() then
-		SendChatMessage(msg, "RAID")
+		SendAnnouncementMessage(msg, "RAID")
 	elseif IsInGroup() then
-		SendChatMessage(msg, "PARTY")
+		SendAnnouncementMessage(msg, "PARTY")
 	else
-		SendChatMessage(msg, "YELL")
+		SendAnnouncementMessage(msg, "YELL")
 	end
 end
